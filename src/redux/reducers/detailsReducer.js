@@ -1,6 +1,6 @@
 const initState = {
-  info: {},
-  screenshots: {},
+  info: { platforms: [] },
+  screenshots: [],
 };
 export const detailsReducer = (state = initState, action) => {
   switch (action.type) {

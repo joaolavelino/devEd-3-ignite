@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 //Components
 import Game from "../components/Game";
+import { useLocation } from "react-router-dom";
 
 const Home = () => {
   //FETCH GAMES - send data TO the store
@@ -19,9 +20,13 @@ const Home = () => {
   //declaring with the brackets, each array from the state will be extracted to a specific variable
   const { popular, newGames, upcoming } = useSelector((state) => state.games);
 
+  //GET CURRENT LOCATION
+  const location = useLocation();
+  const pathId = location.pathname.split("/")[2];
+
   return (
     <GameList>
-      <GameDetails />
+      {pathId && <GameDetails />}
       <h2>Upcoming Games</h2>
       <Games>
         {upcoming.map((game) => (

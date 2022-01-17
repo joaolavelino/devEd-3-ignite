@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { loadDetails } from "../redux/actions/detailsAction";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Game = ({ game }) => {
   //FETCH DATA
@@ -16,11 +17,13 @@ const Game = ({ game }) => {
   };
 
   return (
-    <GameCard onClick={loadDetailsHandler}>
-      <h3>{game.name}</h3>
-      <p>{game.released} </p>
-      <img src={game.background_image} alt={`${game.name} feature image`} />
-    </GameCard>
+    <Link to={`/game/${game.id}`}>
+      <GameCard onClick={loadDetailsHandler}>
+        <h3>{game.name}</h3>
+        <p>{game.released} </p>
+        <img src={game.background_image} alt={`${game.name} feature image`} />
+      </GameCard>
+    </Link>
   );
 };
 
@@ -33,6 +36,7 @@ const GameCard = styled(motion.div)`
   border-radius: 0.7rem;
   text-align: center;
   overflow: hidden;
+  cursor: pointer;
   img {
     width: 100%;
     height: 40vh;
