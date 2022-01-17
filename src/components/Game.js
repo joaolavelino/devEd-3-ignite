@@ -12,7 +12,6 @@ const Game = ({ game }) => {
   const dispatch = useDispatch();
 
   const loadDetailsHandler = () => {
-    console.log("hey");
     dispatch(loadDetails(game.id));
   };
 
