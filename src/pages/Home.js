@@ -26,12 +26,27 @@ const Home = () => {
           <Game key={game.id} game={game} />
         ))}
       </Games>
+      <h2>Popular Games</h2>
+      <Games>
+        {popular.map((game) => (
+          <Game key={game.id} game={game} />
+        ))}
+      </Games>
+      <h2>New Games</h2>
+      <Games>
+        {newGames.map((game) => (
+          <Game key={game.id} game={game} />
+        ))}
+      </Games>
     </GameList>
   );
 };
 
 const GameList = styled(motion.div)`
   padding: 0rem 5rem;
+  h2 {
+    padding: 5rem 0;
+  }
 `;
 const Games = styled(motion.div)`
   min-height: 80vh;

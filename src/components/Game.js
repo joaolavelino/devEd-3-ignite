@@ -18,7 +18,7 @@ const GameCard = styled(motion.div)`
   flex-direction: column;
   justify-content: space-between;
   min-height: 30vh;
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.2);
   border-radius: 0.7rem;
   text-align: center;
   overflow: hidden;
