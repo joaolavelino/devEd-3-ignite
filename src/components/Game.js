@@ -2,10 +2,22 @@ import React from "react";
 //Style and Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
+//REDUX
+import { useDispatch } from "react-redux";
+import { loadDetails } from "../redux/actions/detailsAction";
+import { useSelector } from "react-redux";
 
 const Game = ({ game }) => {
+  //FETCH DATA
+  const dispatch = useDispatch();
+
+  const loadDetailsHandler = () => {
+    console.log("hey");
+    dispatch(loadDetails(game.id));
+  };
+
   return (
-    <GameCard>
+    <GameCard onClick={loadDetailsHandler}>
       <h3>{game.name}</h3>
       <p>{game.released} </p>
       <img src={game.background_image} alt={`${game.name} feature image`} />
