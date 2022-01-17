@@ -8,44 +8,50 @@ import { gameScreenshotsURL } from "../api";
 
 const GameDetails = () => {
   //Data
-  const { screenshots, info } = useSelector((state) => state.details);
+  const { screenshots, info, isLoading } = useSelector(
+    (state) => state.details
+  );
 
   return (
-    <CardShadow>
-      <DetailsCard>
-        <Stats>
-          <div className="rating">
-            <h3>{info.name}</h3>
-            <p>
-              Rating: {info.rating} / {info.rating_top}
-            </p>
-          </div>
-          <Info>
-            <h3>Platforms</h3>
-            <Platforms>
-              {info.platforms.map((data) => (
-                <h4 key={data.platform.id}>{data.platform.name}</h4>
+    <>
+      {!isLoading && (
+        <CardShadow>
+          <DetailsCard>
+            <Stats>
+              <div className="rating">
+                <h3>{info.name}</h3>
+                <p>
+                  Rating: {info.rating} / {info.rating_top}
+                </p>
+              </div>
+              <Info>
+                <h3>Platforms</h3>
+                <Platforms>
+                  {info.platforms.map((data) => (
+                    <h4 key={data.platform.id}>{data.platform.name}</h4>
+                  ))}
+                </Platforms>
+              </Info>
+            </Stats>
+            <Media>
+              <img src={info.background_image} alt="bg image" />
+            </Media>
+            <Description>
+              <p>{info.description_raw}</p>
+            </Description>
+            <div className="gallery">
+              {screenshots.map((data, index) => (
+                <img
+                  key={data.id}
+                  src={data.image}
+                  alt={`screenshot #${index + 1}`}
+                />
               ))}
-            </Platforms>
-          </Info>
-        </Stats>
-        <Media>
-          <img src={info.background_image} alt="bg image" />
-        </Media>
-        <Description>
-          <p>{info.description_raw}</p>
-        </Description>
-        <div className="gallery">
-          {screenshots.map((data, index) => (
-            <img
-              key={data.id}
-              src={data.image}
-              alt={`screenshot #${index + 1}`}
-            />
-          ))}
-        </div>
-      </DetailsCard>
-    </CardShadow>
+            </div>
+          </DetailsCard>
+        </CardShadow>
+      )}
+    </>
   );
 };
 
