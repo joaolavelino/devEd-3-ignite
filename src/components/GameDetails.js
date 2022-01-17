@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 //REDUX
 import { useSelector } from "react-redux";
 import { gameScreenshotsURL } from "../api";
+import { useNavigate } from "react-router-dom";
 
 const GameDetails = () => {
   //Data
@@ -12,10 +13,18 @@ const GameDetails = () => {
     (state) => state.details
   );
 
+  const navigate = useNavigate();
+  const exitDetailsHandler = (e) => {
+    const element = e.target;
+    if (element.classList.contains("shadow")) {
+      navigate("/");
+    }
+  };
+
   return (
     <>
       {!isLoading && (
-        <CardShadow>
+        <CardShadow className="shadow" onClick={exitDetailsHandler}>
           <DetailsCard>
             <Stats>
               <div className="rating">

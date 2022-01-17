@@ -24,6 +24,10 @@ const Home = () => {
   const location = useLocation();
   const pathId = location.pathname.split("/")[2];
 
+  if (!pathId) {
+    document.body.style.overflow = "auto";
+  }
+
   return (
     <GameList>
       {pathId && <GameDetails />}
