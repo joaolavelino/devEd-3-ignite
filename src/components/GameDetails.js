@@ -13,28 +13,28 @@ const GameDetails = () => {
   return (
     <CardShadow>
       <DetailsCard>
-        <div className="stats">
-          <h3>{info.name}</h3>
+        <Stats>
           <div className="rating">
+            <h3>{info.name}</h3>
             <p>
               Rating: {info.rating} / {info.rating_top}
             </p>
           </div>
-          <div className="info">
+          <Info>
             <h3>Platforms</h3>
-            <div className="platforms">
+            <Platforms>
               {info.platforms.map((data) => (
                 <h4 key={data.platform.id}>{data.platform.name}</h4>
               ))}
-            </div>
-          </div>
-        </div>
-        <div className="media">
+            </Platforms>
+          </Info>
+        </Stats>
+        <Media>
           <img src={info.background_image} alt="bg image" />
-        </div>
-        <div className="description">
+        </Media>
+        <Description>
           <p>{info.description_raw}</p>
-        </div>
+        </Description>
         <div className="gallery">
           {screenshots.map((data, index) => (
             <img
@@ -53,7 +53,7 @@ const CardShadow = styled(motion.div)`
   width: 100%;
   min-height: 100vh;
   overflow-y: scroll;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
   left: 0;
@@ -81,6 +81,37 @@ const DetailsCard = styled(motion.div)`
   img {
     width: 100%;
   }
+`;
+
+const Stats = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Info = styled(motion.div)`
+  text-align: center;
+`;
+
+const Platforms = styled(motion.div)`
+  display: flex;
+  justify-content: space-evenly;
+  img {
+    margin-left: 3rem;
+  }
+`;
+
+const Media = styled(motion.div)`
+  margin-top: 5rem;
+  img {
+    width: 100%;
+    max-height: 50vh;
+    object-fit: cover;
+  }
+`;
+
+const Description = styled(motion.div)`
+  margin: 5rem 0;
 `;
 
 export default GameDetails;
