@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { loadDetails } from "../redux/actions/detailsAction";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { smallImage } from "../util";
 
 const Game = ({ game }) => {
   //FETCH DATA
@@ -22,7 +23,10 @@ const Game = ({ game }) => {
       <GameCard onClick={loadDetailsHandler}>
         <h3>{game.name}</h3>
         <p>{game.released} </p>
-        <img src={game.background_image} alt={`${game.name} feature image`} />
+        <img
+          src={smallImage(game.background_image, 640)}
+          alt={`${game.name} feature image`}
+        />
       </GameCard>
     </Link>
   );

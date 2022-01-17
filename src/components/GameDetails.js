@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { gameScreenshotsURL } from "../api";
 import { useNavigate } from "react-router-dom";
+import { smallImage } from "../util";
 
 const GameDetails = () => {
   //Data
@@ -43,7 +44,10 @@ const GameDetails = () => {
               </Info>
             </Stats>
             <Media>
-              <img src={info.background_image} alt="bg image" />
+              <img
+                src={smallImage(info.background_image, 1280)}
+                alt="bg image"
+              />
             </Media>
             <Description>
               <p>{info.description_raw}</p>
@@ -52,7 +56,7 @@ const GameDetails = () => {
               {screenshots.map((data, index) => (
                 <img
                   key={data.id}
-                  src={data.image}
+                  src={smallImage(data.image, 1280)}
                   alt={`screenshot #${index + 1}`}
                 />
               ))}
