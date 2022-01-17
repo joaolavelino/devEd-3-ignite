@@ -2,6 +2,7 @@ import React from "react";
 //Style and Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { cardAnimation } from "../animation";
 //REDUX
 import { useDispatch } from "react-redux";
 import { loadDetails } from "../redux/actions/detailsAction";
@@ -9,7 +10,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { smallImage } from "../util";
 
-const Game = ({ game }) => {
+const Game = ({ game, index }) => {
   //FETCH DATA
   const dispatch = useDispatch();
 
@@ -19,16 +20,27 @@ const Game = ({ game }) => {
   };
 
   return (
-    <Link to={`/game/${game.id}`}>
-      <GameCard onClick={loadDetailsHandler}>
-        <h3>{game.name}</h3>
-        <p>{game.released} </p>
-        <img
+    <GameCard
+      index={index}
+      onClick={loadDetailsHandler}
+      layoutId={game.id}
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ type: "spring", delay: index * 0.09 }}
+      className="b"
+    >
+      <Link to={`/game/${game.id}`}>
+        <div className="header">
+          <motion.h3 layoutId={`title${game.id}`}>{game.name}</motion.h3>
+          <p>{game.released} </p>
+        </div>
+        <motion.img
+          layoutId={`image${game.id}`}
           src={smallImage(game.background_image, 640)}
           alt={`${game.name} feature image`}
         />
-      </GameCard>
-    </Link>
+      </Link>
+    </GameCard>
   );
 };
 
@@ -46,6 +58,9 @@ const GameCard = styled(motion.div)`
     width: 100%;
     height: 40vh;
     object-fit: cover;
+  }
+  .header {
+    height: 30%;
   }
 `;
 

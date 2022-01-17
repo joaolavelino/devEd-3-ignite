@@ -2,13 +2,14 @@ import React from "react";
 //Style and Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { fadeAnimation } from "../animation";
 //REDUX
 import { useSelector } from "react-redux";
 import { gameScreenshotsURL } from "../api";
 import { useNavigate } from "react-router-dom";
 import { smallImage } from "../util";
 
-const GameDetails = () => {
+const GameDetails = ({ pathId }) => {
   //Data
   const { screenshots, info, isLoading } = useSelector(
     (state) => state.details
@@ -25,11 +26,20 @@ const GameDetails = () => {
   return (
     <>
       {!isLoading && (
-        <CardShadow className="shadow" onClick={exitDetailsHandler}>
-          <DetailsCard>
+        <CardShadow
+          className="shadow"
+          onClick={exitDetailsHandler}
+          variants={fadeAnimation}
+          initial="hidden"
+          animate="show"
+          exit="exit"
+        >
+          <DetailsCard layoutId={parseInt(pathId)}>
             <Stats>
               <div className="rating">
-                <h3>{info.name}</h3>
+                <motion.h3 layoutId={`title${parseInt(pathId)}`}>
+                  {info.name}
+                </motion.h3>
                 <p>
                   Rating: {info.rating} / {info.rating_top}
                 </p>
@@ -44,7 +54,8 @@ const GameDetails = () => {
               </Info>
             </Stats>
             <Media>
-              <img
+              <motion.img
+                layoutId={`image${parseInt(pathId)}`}
                 src={smallImage(info.background_image, 1280)}
                 alt="bg image"
               />
@@ -69,6 +80,7 @@ const GameDetails = () => {
 };
 
 const CardShadow = styled(motion.div)`
+  z-index: 5;
   width: 100%;
   min-height: 100vh;
   overflow-y: scroll;
@@ -88,6 +100,7 @@ const CardShadow = styled(motion.div)`
 `;
 
 const DetailsCard = styled(motion.div)`
+  z-index: 6;
   width: 60%;
   border-radius: 1rem;
   padding: 3rem;

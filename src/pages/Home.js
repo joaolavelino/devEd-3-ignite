@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadGames } from "../redux/actions/gamesAction";
 //Style and Animation
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { titleAnimation } from "../animation";
 //Components
 import Game from "../components/Game";
 import { useLocation } from "react-router-dom";
@@ -30,17 +31,23 @@ const Home = () => {
 
   return (
     <GameList>
-      {pathId && <GameDetails />}
-      <h2>Upcoming Games</h2>
-      <Games>
-        {upcoming.map((game) => (
-          <Game key={game.id} game={game} />
+      <AnimatePresence>
+        {pathId && <GameDetails pathId={pathId} />}
+      </AnimatePresence>
+      <motion.h2 variants={titleAnimation} initial="hidden" animate="show">
+        Upcoming Games
+      </motion.h2>
+      <Games className="a" variants={container} initial="hidden" animate="show">
+        {upcoming.map((game, index) => (
+          <Game key={game.id} game={game} index={index} />
         ))}
       </Games>
-      <h2>Popular Games</h2>
+      <motion.h2 variants={titleAnimation} initial="hidden" animate="show">
+        Popular Games
+      </motion.h2>
       <Games>
-        {popular.map((game) => (
-          <Game key={game.id} game={game} />
+        {popular.map((game, i) => (
+          <Game key={game.id} game={game} i={i} />
         ))}
       </Games>
       <h2>New Games</h2>
@@ -66,5 +73,15 @@ const Games = styled(motion.div)`
   grid-column-gap: 3rem;
   grid-row-gap: 3rem;
 `;
+
+const container = {
+  hidden: { opacity: 1 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
 
 export default Home;
