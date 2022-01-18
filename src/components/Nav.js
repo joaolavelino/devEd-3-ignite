@@ -2,6 +2,7 @@ import React, { useState } from "react";
 //Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { navAnimation } from "../animation";
 //media
 import logo from "../img/logo.svg";
 //Add Redux logic
@@ -27,7 +28,7 @@ const Nav = () => {
   };
 
   return (
-    <StyledNav>
+    <StyledNav variants={navAnimation} initial="hidden" animate="show">
       <Logo onClick={clearSearchHandler}>
         <img src={logo} alt="Ignite Logo" />
         <h1>Ignite</h1>
@@ -42,22 +43,36 @@ const Nav = () => {
 
 const StyledNav = styled(motion.nav)`
   background-color: #ff7676;
-  padding: 2rem 5rem;
+  padding: 3rem 5rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100vw;
-  height: 8vh;
   position: fixed;
-  top: 0;
+  top: -2vh;
   z-index: 4;
+
+  @media screen and (max-width:600px){
+    flex-direction: column;
+    align-items: flex-start;
+    padding:3rem 2rem 2rem;
+  }
+
   .search {
     display: flex;
     align-items: center;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    
+    @media screen and (max-width:600px){
+    margin-top: 1rem;
+    width: 100%;
+  }
+
     }
   }
   input {
+    overflow: hidden;
+    width: calc(100% - 90px);
     height: 2rem;
     font-size: 1rem;
     padding: 0.75rem;
@@ -86,11 +101,14 @@ const StyledNav = styled(motion.nav)`
     :hover {
       box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
   }
+
+  
 `;
 
 const Logo = styled(motion.div)`
   display: flex;
   align-items: center;
+  margin-right: 2rem;
   cursor: pointer;
   color: white;
   img {

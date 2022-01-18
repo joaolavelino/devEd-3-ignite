@@ -16,6 +16,7 @@ import xbox from "../img/xbox.svg";
 import steam from "../img/steam.svg";
 import gamepad from "../img/gamepad.svg";
 import windows from "../img/windows.svg";
+import android from "../img/android.svg";
 import starEmpty from "../img/star-empty.png";
 import starFull from "../img/star-full.png";
 import starHalf from "../img/star-half.png";
@@ -40,8 +41,10 @@ const GameDetails = ({ pathId }) => {
     else if (platform.includes("PlayStation")) return playstation;
     else if (platform.includes("Nintendo")) return nintendo;
     else if (platform.includes("iOS")) return apple;
+    else if (platform.includes("macOS")) return apple;
     else if (platform.includes("Xbox")) return xbox;
     else if (platform.includes("Steam")) return steam;
+    else if (platform.includes("Android")) return android;
     else return gamepad;
   };
 
@@ -140,6 +143,11 @@ const CardShadow = styled(motion.div)`
   &::-webkit-scrollbar-track {
     background-color: white;
   }
+  @media screen and (max-width: 768px) {
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
 `;
 
 const DetailsCard = styled(motion.div)`
@@ -153,6 +161,13 @@ const DetailsCard = styled(motion.div)`
   background-color: #fff;
   box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.2);
   overflow-x: hidden;
+  @media screen and (max-width: 768px) {
+    top: 10%;
+    width: 90%;
+    left: 5%;
+    padding: 1rem;
+  }
+
   img {
     width: 100%;
   }

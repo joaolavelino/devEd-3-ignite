@@ -129,10 +129,19 @@ const Home = () => {
 
 const GameList = styled(motion.div)`
   padding: 0rem 5rem;
+  @media screen and (max-width: 600px) {
+    padding: 0 2rem;
+  }
+
   h2 {
     padding: 8rem 0 3rem;
+
+    @media screen and (max-width: 600px) {
+      padding: 10rem 0 3rem;
+    }
   }
 `;
+
 const Games = styled(motion.div)`
   min-height: 80vh;
   display: grid;
