@@ -8,6 +8,14 @@ import { useSelector } from "react-redux";
 import { gameScreenshotsURL } from "../api";
 import { useNavigate } from "react-router-dom";
 import { smallImage } from "../util";
+//
+import playstation from "../img/playstation.svg";
+import nintendo from "../img/nintendo.svg";
+import apple from "../img/apple.svg";
+import xbox from "../img/xbox.svg";
+import steam from "../img/steam.svg";
+import gamepad from "../img/gamepad.svg";
+import windows from "../img/windows.svg";
 
 const GameDetails = ({ pathId }) => {
   //Data
@@ -21,6 +29,18 @@ const GameDetails = ({ pathId }) => {
     if (element.classList.contains("shadow")) {
       navigate("/");
     }
+  };
+
+  //getPlatiformIcons
+  const getPlatform = (platform) => {
+    console.log(platform);
+    if (platform.includes("PC")) return windows;
+    else if (platform.includes("PlayStation")) return playstation;
+    else if (platform.includes("Nintendo")) return nintendo;
+    else if (platform.includes("iOS")) return apple;
+    else if (platform.includes("Xbox")) return xbox;
+    else if (platform.includes("Steam")) return steam;
+    else return gamepad;
   };
 
   return (
@@ -48,7 +68,10 @@ const GameDetails = ({ pathId }) => {
                 <h3>Platforms</h3>
                 <Platforms>
                   {info.platforms.map((data) => (
-                    <h4 key={data.platform.id}>{data.platform.name}</h4>
+                    <img
+                      key={data.platform.id}
+                      src={getPlatform(data.platform.name)}
+                    />
                   ))}
                 </Platforms>
               </Info>
@@ -129,7 +152,9 @@ const Platforms = styled(motion.div)`
   display: flex;
   justify-content: space-evenly;
   img {
-    margin-left: 3rem;
+    margin-left: 1rem;
+    filter: grayscale(1);
+    width: 2em;
   }
 `;
 
