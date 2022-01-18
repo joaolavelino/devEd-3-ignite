@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import GameDetails from "../components/GameDetails";
 //Add Redux logic
 import { useDispatch, useSelector } from "react-redux";
@@ -33,6 +33,11 @@ const Home = () => {
 
   const clearSearchHandler = () => {
     dispatch(clearSearch());
+  };
+
+  const filterListBG = (array) => {
+    let filtered = array.filter((e) => e.background_image != null);
+    return filtered;
   };
 
   return (
@@ -74,7 +79,7 @@ const Home = () => {
               initial="hidden"
               animate="show"
             >
-              {search.map((game, index) => (
+              {filterListBG(search).map((game, index) => (
                 <Game key={game.id} game={game} index={index} />
               ))}
             </Games>
@@ -98,7 +103,7 @@ const Home = () => {
               initial="hidden"
               animate="show"
             >
-              {upcoming.map((game, index) => (
+              {filterListBG(upcoming).map((game, index) => (
                 <Game key={game.id} game={game} index={index} />
               ))}
             </Games>
@@ -110,14 +115,14 @@ const Home = () => {
               Popular Games
             </motion.h2>
             <Games>
-              {popular.map((game, i) => (
-                <Game key={game.id} game={game} i={i} />
+              {filterListBG(popular).map((game, index) => (
+                <Game key={game.id} game={game} index={index} />
               ))}
             </Games>
             <h2>New Games</h2>
             <Games>
-              {newGames.map((game) => (
-                <Game key={game.id} game={game} />
+              {filterListBG(newGames).map((game, index) => (
+                <Game key={game.id} game={game} index={index} />
               ))}
             </Games>
           </>

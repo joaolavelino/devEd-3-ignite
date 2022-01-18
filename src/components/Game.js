@@ -2,11 +2,9 @@ import React from "react";
 //Style and Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { cardAnimation } from "../animation";
 //REDUX
 import { useDispatch } from "react-redux";
 import { loadDetails } from "../redux/actions/detailsAction";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { smallImage } from "../util";
 

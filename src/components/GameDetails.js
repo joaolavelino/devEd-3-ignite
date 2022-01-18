@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { fadeAnimation } from "../animation";
 //REDUX
 import { useSelector } from "react-redux";
-import { gameScreenshotsURL } from "../api";
 import { useNavigate } from "react-router-dom";
 import { smallImage } from "../util";
 //img
