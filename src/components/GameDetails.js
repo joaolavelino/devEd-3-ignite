@@ -19,6 +19,7 @@ import android from "../img/android.svg";
 import starEmpty from "../img/star-empty.png";
 import starFull from "../img/star-full.png";
 import starHalf from "../img/star-half.png";
+import close from "../img/times-solid.svg";
 
 const GameDetails = ({ pathId }) => {
   //Data
@@ -32,6 +33,9 @@ const GameDetails = ({ pathId }) => {
     if (element.classList.contains("shadow")) {
       navigate("/");
     }
+  };
+  const closeButtonHandler = (e) => {
+    navigate("/");
   };
 
   //getPlatiformIcons
@@ -76,6 +80,9 @@ const GameDetails = ({ pathId }) => {
           exit="exit"
         >
           <DetailsCard layoutId={parseInt(pathId)}>
+            <button className="close shadow" onClick={closeButtonHandler}>
+              <img src={close} alt="close card" />
+            </button>
             <Stats>
               <div className="rating">
                 <motion.h3 layoutId={`title${parseInt(pathId)}`}>
@@ -153,7 +160,7 @@ const DetailsCard = styled(motion.div)`
   z-index: 6;
   width: 60%;
   border-radius: 1rem;
-  padding: 3rem;
+  padding: 5rem 3rem;
   position: absolute;
   left: 20%;
   top: 5%;
@@ -161,14 +168,26 @@ const DetailsCard = styled(motion.div)`
   box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.2);
   overflow-x: hidden;
   @media screen and (max-width: 768px) {
-    top: 10%;
+    top: 5%;
     width: 90%;
     left: 5%;
-    padding: 1rem;
+    padding: 3rem 1rem;
   }
 
   img {
     width: 100%;
+  }
+  .close {
+    z-index: 10;
+    position: absolute;
+    width: 1.5rem;
+    top: 2rem;
+    border: none;
+    cursor: pointer;
+    @media screen and (max-width: 768px) {
+      width: 1.2rem;
+      top: 1rem;
+    }
   }
 `;
 
