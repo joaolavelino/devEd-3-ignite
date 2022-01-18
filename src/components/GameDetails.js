@@ -80,7 +80,7 @@ const GameDetails = ({ pathId }) => {
           exit="exit"
         >
           <DetailsCard layoutId={parseInt(pathId)}>
-            <button className="close shadow" onClick={closeButtonHandler}>
+            <button className="close" onClick={closeButtonHandler}>
               <img src={close} alt="close card" />
             </button>
             <Stats>
@@ -183,6 +183,7 @@ const DetailsCard = styled(motion.div)`
     width: 1.5rem;
     top: 2rem;
     border: none;
+    background: transparent;
     cursor: pointer;
     @media screen and (max-width: 768px) {
       width: 1.2rem;
