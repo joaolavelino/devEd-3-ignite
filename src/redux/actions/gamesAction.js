@@ -1,5 +1,10 @@
 import axios from "axios";
-import { popularGamesUrl, upcomingGamesUrl, newGamesUrl } from "../../api";
+import {
+  popularGamesUrl,
+  upcomingGamesUrl,
+  newGamesUrl,
+  searchGameUrl,
+} from "../../api";
 
 //While working with THUNK to make async request with Axios, you need to call another arrow function inside the initial arrow function of the action creator.
 //This second arrow function will be asynchronous and will contain the axios request.
@@ -16,4 +21,21 @@ export const loadGames = () => async (dispatch) => {
       newGames: newData.data.results,
     },
   });
+};
+
+export const searchGames = (game_name) => async (dispatch) => {
+  //fetch
+  const searchData = await axios.get(searchGameUrl(game_name));
+  dispatch({
+    type: "FETCH_SEARCH",
+    payload: {
+      search: searchData.data.results,
+    },
+  });
+};
+
+export const clearSearch = () => {
+  return {
+    type: "CLEAR_SEARCH",
+  };
 };

@@ -26,7 +26,7 @@ const Game = ({ game, index }) => {
       layoutId={game.id}
       initial={{ opacity: 0, y: -100 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.09 }}
+      transition={{ delay: index * 0.1 }}
       className="b"
     >
       <Link to={`/game/${game.id}`}>

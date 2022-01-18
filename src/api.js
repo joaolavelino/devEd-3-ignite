@@ -46,3 +46,7 @@ export const gameDetailsURL = (id) =>
 // exampleURL = https://api.rawg.io/api/games/681399/screenshots?&key={insert-key-here}
 export const gameScreenshotsURL = (id) =>
   `${base_url}games/${id}/screenshots?&key=${process.env.REACT_APP_RAWG_API_KEY}`;
+
+//Searched Game
+export const searchGameUrl = (game_name) =>
+  `${base_url}games?search=${game_name}?&key=${process.env.REACT_APP_RAWG_API_KEY}`;

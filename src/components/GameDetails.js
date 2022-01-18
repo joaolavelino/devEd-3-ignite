@@ -79,9 +79,7 @@ const GameDetails = ({ pathId }) => {
                 <motion.h3 layoutId={`title${parseInt(pathId)}`}>
                   {info.name}
                 </motion.h3>
-                <p>
-                  Rating: {info.rating} / {info.rating_top}
-                </p>
+                <p>Rating: {info.rating} / 5</p>
                 <div className="stars">{getStars()}</div>
               </div>
               <Info>

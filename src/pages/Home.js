@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import GameDetails from "../components/GameDetails";
 //Add Redux logic
 import { useDispatch, useSelector } from "react-redux";
-import { loadGames } from "../redux/actions/gamesAction";
+import { loadGames, clearSearch } from "../redux/actions/gamesAction";
 //Style and Animation
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
@@ -19,7 +19,9 @@ const Home = () => {
   }, [dispatch]);
   //Get the data FROM the store (with use Selector)
   //declaring with the brackets, each array from the state will be extracted to a specific variable
-  const { popular, newGames, upcoming } = useSelector((state) => state.games);
+  const { popular, newGames, upcoming, search } = useSelector(
+    (state) => state.games
+  );
 
   //GET CURRENT LOCATION
   const location = useLocation();
@@ -29,33 +31,98 @@ const Home = () => {
     document.body.style.overflow = "auto";
   }
 
+  const clearSearchHandler = () => {
+    dispatch(clearSearch());
+  };
+
   return (
     <GameList>
       <AnimatePresence>
         {pathId && <GameDetails pathId={pathId} />}
       </AnimatePresence>
-      <motion.h2 variants={titleAnimation} initial="hidden" animate="show">
-        Upcoming Games
-      </motion.h2>
-      <Games className="a" variants={container} initial="hidden" animate="show">
-        {upcoming.map((game, index) => (
-          <Game key={game.id} game={game} index={index} />
-        ))}
-      </Games>
-      <motion.h2 variants={titleAnimation} initial="hidden" animate="show">
-        Popular Games
-      </motion.h2>
-      <Games>
-        {popular.map((game, i) => (
-          <Game key={game.id} game={game} i={i} />
-        ))}
-      </Games>
-      <h2>New Games</h2>
-      <Games>
-        {newGames.map((game) => (
-          <Game key={game.id} game={game} />
-        ))}
-      </Games>
+      <AnimatePresence>
+        {search.length > 0 && (
+          <SearchResults
+            initial={{
+              opacity: 0,
+              x: -100,
+              transition: { duration: 0.4, ease: "easeInOut" },
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              transition: { duration: 0.4, ease: "easeInOut" },
+            }}
+            exit={{
+              opacity: 0,
+              x: 100,
+              transition: { duration: 0.4, ease: "easeInOut" },
+            }}
+          >
+            <motion.div
+              className="searchHeader"
+              variants={titleAnimation}
+              initial="hidden"
+              animate="show"
+            >
+              <h2>Search Result</h2>
+              <button onClick={clearSearchHandler}>Clear</button>
+            </motion.div>
+            <Games
+              className="a"
+              variants={container}
+              initial="hidden"
+              animate="show"
+            >
+              {search.map((game, index) => (
+                <Game key={game.id} game={game} index={index} />
+              ))}
+            </Games>
+          </SearchResults>
+        )}
+      </AnimatePresence>
+
+      {!search.length && (
+        <AnimatePresence>
+          <>
+            <motion.h2
+              variants={titleAnimation}
+              initial="hidden"
+              animate="show"
+            >
+              Upcoming Games
+            </motion.h2>
+            <Games
+              className="a"
+              variants={container}
+              initial="hidden"
+              animate="show"
+            >
+              {upcoming.map((game, index) => (
+                <Game key={game.id} game={game} index={index} />
+              ))}
+            </Games>
+            <motion.h2
+              variants={titleAnimation}
+              initial="hidden"
+              animate="show"
+            >
+              Popular Games
+            </motion.h2>
+            <Games>
+              {popular.map((game, i) => (
+                <Game key={game.id} game={game} i={i} />
+              ))}
+            </Games>
+            <h2>New Games</h2>
+            <Games>
+              {newGames.map((game) => (
+                <Game key={game.id} game={game} />
+              ))}
+            </Games>
+          </>
+        </AnimatePresence>
+      )}
     </GameList>
   );
 };
@@ -83,5 +150,28 @@ const container = {
     },
   },
 };
+
+const SearchResults = styled(motion.div)`
+  .searchHeader {
+    display: flex;
+    align-items: center;
+    button {
+      margin: 8rem 0 3rem 2rem;
+      padding: 0.5rem 1rem;
+      background: #ff7676;
+      border: none;
+      border-radius: 0.5rem;
+      color: white;
+      font-family: "Montserrat", sans-serif;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: 0.4s;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+      :hover {
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+`;
 
 export default Home;
