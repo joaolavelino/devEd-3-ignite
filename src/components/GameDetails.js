@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { gameScreenshotsURL } from "../api";
 import { useNavigate } from "react-router-dom";
 import { smallImage } from "../util";
-//
+//img
 import playstation from "../img/playstation.svg";
 import nintendo from "../img/nintendo.svg";
 import apple from "../img/apple.svg";
@@ -16,6 +16,9 @@ import xbox from "../img/xbox.svg";
 import steam from "../img/steam.svg";
 import gamepad from "../img/gamepad.svg";
 import windows from "../img/windows.svg";
+import starEmpty from "../img/star-empty.png";
+import starFull from "../img/star-full.png";
+import starHalf from "../img/star-half.png";
 
 const GameDetails = ({ pathId }) => {
   //Data
@@ -33,7 +36,6 @@ const GameDetails = ({ pathId }) => {
 
   //getPlatiformIcons
   const getPlatform = (platform) => {
-    console.log(platform);
     if (platform.includes("PC")) return windows;
     else if (platform.includes("PlayStation")) return playstation;
     else if (platform.includes("Nintendo")) return nintendo;
@@ -41,6 +43,23 @@ const GameDetails = ({ pathId }) => {
     else if (platform.includes("Xbox")) return xbox;
     else if (platform.includes("Steam")) return steam;
     else return gamepad;
+  };
+
+  //getStarIcons
+  const getStars = () => {
+    let stars = [];
+    const rating = info.rating;
+    console.log(rating);
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        stars.push(<img src={starFull} alt="star" key={i} />);
+      } else if (i > rating && i - rating < 1) {
+        stars.push(<img src={starHalf} alt="half star" key={i} />);
+      } else {
+        stars.push(<img src={starEmpty} alt="half star" key={i} />);
+      }
+    }
+    return stars;
   };
 
   return (
@@ -63,6 +82,7 @@ const GameDetails = ({ pathId }) => {
                 <p>
                   Rating: {info.rating} / {info.rating_top}
                 </p>
+                <div className="stars">{getStars()}</div>
               </div>
               <Info>
                 <h3>Platforms</h3>
@@ -71,6 +91,8 @@ const GameDetails = ({ pathId }) => {
                     <img
                       key={data.platform.id}
                       src={getPlatform(data.platform.name)}
+                      alt={`${data.platform.name} icon`}
+                      title={data.platform.name}
                     />
                   ))}
                 </Platforms>
@@ -142,6 +164,12 @@ const Stats = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  .stars {
+    display: flex;
+  }
+  img {
+    width: 1.2rem;
+  }
 `;
 
 const Info = styled(motion.div)`

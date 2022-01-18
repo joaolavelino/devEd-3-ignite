@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (c3084ef, 2021-09-22)"
+   sodipodi:docname="stars.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="2.0703423"
+     inkscape:cx="139.34894"
+     inkscape:cy="175.09182"
+     inkscape:window-width="1843"
+     inkscape:window-height="969"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     inkscape:snap-nodes="false" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path938"
+       style="fill:#ff7e7e;stroke-width:17.0079;stroke-linecap:round;fill-opacity:1"
+       inkscape:transform-center-x="-10.676308"
+       inkscape:transform-center-y="-15.840517"
+       d="M 80.986328 27.599609 L 60.832031 67.253906 L 16.740234 73.132812 L 48.226562 104.55469 L 40.191406 148.30469 L 79.804688 128.06836 L 118.92969 149.23047 L 111.92773 105.30273 L 144.14258 74.630859 L 100.20117 67.716797 L 80.986328 27.599609 z M 80.859375 51.234375 L 92.599609 77.111328 L 119.44141 81.572266 L 99.761719 101.35742 L 104.03906 129.69336 L 80.138672 116.04297 L 55.939453 129.0957 L 60.847656 100.875 L 41.613281 80.605469 L 68.548828 76.8125 L 80.859375 51.234375 z "
+       transform="scale(0.26458333)"
+       inkscape:export-filename="/Users/joaoavelino/Documentos/DEV/Dev by Ed/Creative React Course/Projetos/ignite/src/img/star-half.png"
+       inkscape:export-xdpi="75.352028"
+       inkscape:export-ydpi="75.352028" />
+    <path
+       sodipodi:type="star"
+       style="fill:#ff7e7e;stroke-width:17.0079;stroke-linecap:round;fill-opacity:1"
+       id="path1204"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="175.81635"
+       sodipodi:cy="498.46829"
+       sodipodi:r1="66.983841"
+       sodipodi:r2="33.49192"
+       sodipodi:arg1="1.0471976"
+       sodipodi:arg2="1.6755161"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 209.30826,556.478 -36.99277,-24.70126 -41.32009,16.47024 12.0609,-42.81533 -28.43274,-34.20814 44.44683,-1.76007 23.74768,-37.61204 15.40874,41.72755 43.10962,10.96262 -34.92369,27.54911 z"
+       transform="matrix(0.26344093,-0.02456041,0.02456041,0.26344093,-37.596348,-65.935954)"
+       inkscape:transform-center-x="-10.676308"
+       inkscape:transform-center-y="-15.840517"
+       inkscape:export-filename="/Users/joaoavelino/Documentos/DEV/Dev by Ed/Creative React Course/Projetos/ignite/src/img/star-full.png"
+       inkscape:export-xdpi="75.352028"
+       inkscape:export-ydpi="75.352028" />
+    <path
+       id="rect1252"
+       style="fill:#ff7e7e;stroke-width:17.0079;stroke-linecap:round;fill-opacity:1"
+       d="M 80.986328 27.599609 L 60.832031 67.253906 L 16.740234 73.132812 L 48.226562 104.55469 L 40.191406 148.30469 L 79.804688 128.06836 L 80.986328 128.70703 L 80.986328 27.599609 z "
+       transform="scale(0.26458333)"
+       inkscape:export-filename="/Users/joaoavelino/Documentos/DEV/Dev by Ed/Creative React Course/Projetos/ignite/src/img/star-half.png"
+       inkscape:export-xdpi="75.352028"
+       inkscape:export-ydpi="75.352028" />
+    <path
+       id="path3185"
+       style="fill:#ff7e7e;fill-opacity:1;stroke-width:4.50001;stroke-linecap:round"
+       inkscape:transform-center-x="-10.676308"
+       inkscape:transform-center-y="-15.840517"
+       d="m 68.96808,8.3247717 -5.332491,10.4918663 -11.665954,1.55546 8.330757,8.313705 -2.125968,11.575521 10.481014,-5.354196 10.351823,5.599142 -1.852602,-11.622548 8.523513,-8.115266 -11.626165,-1.829345 z m -0.03359,6.2533653 3.106271,6.84661 7.101893,1.18029 -5.206918,5.234822 1.131713,7.497217 -6.323645,-3.611665 -6.402709,3.453534 1.298628,-7.466726 -5.089095,-5.36298 7.126697,-1.003557 z"
+       inkscape:export-filename="/Users/joaoavelino/Documentos/DEV/Dev by Ed/Creative React Course/Projetos/ignite/src/img/star-empty.png"
+       inkscape:export-xdpi="75.352028"
+       inkscape:export-ydpi="75.352028" />
+  </g>
+</svg>
