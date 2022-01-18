@@ -62,6 +62,7 @@ const StyledNav = styled(motion.nav)`
     display: flex;
     align-items: center;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    overflow:hidden;
     
     @media screen and (max-width:600px){
     margin-top: 1rem;
@@ -87,10 +88,10 @@ const StyledNav = styled(motion.nav)`
     }
   }
   button {
+    width: 90px;
     height: 2rem;
     padding: 0.5rem 1rem;
     border: none;
-    border-radius: 0 0.5rem 0.5rem 0;
     background: white;
     font-family: "Montserrat", sans-serif;
     font-weight: bold;
