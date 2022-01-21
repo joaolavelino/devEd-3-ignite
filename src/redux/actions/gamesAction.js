@@ -30,6 +30,7 @@ export const searchGames = (game_name) => async (dispatch) => {
     type: "FETCH_SEARCH",
     payload: {
       search: searchData.data.results,
+      terms: game_name,
     },
   });
 };

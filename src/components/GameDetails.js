@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 //Style and Animation
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { fadeAnimation } from "../animation";
 //REDUX
 import { useSelector } from "react-redux";
@@ -20,12 +20,16 @@ import starEmpty from "../img/star-empty.png";
 import starFull from "../img/star-full.png";
 import starHalf from "../img/star-half.png";
 import close from "../img/times-solid.svg";
+import Carousel from "./Carousel";
+import CarouselFullScreen from "./CarouselFullScreen";
 
 const GameDetails = ({ pathId }) => {
   //Data
   const { screenshots, info, isLoading } = useSelector(
     (state) => state.details
   );
+  const [galery, setGalery] = useState(false);
+  const [carouselPos, setCarouselPos] = useState(0);
 
   const navigate = useNavigate();
   const exitDetailsHandler = (e) => {
@@ -79,6 +83,16 @@ const GameDetails = ({ pathId }) => {
           animate="show"
           exit="exit"
         >
+          <AnimatePresence>
+            {galery && (
+              <CarouselFullScreen
+                setGalery={setGalery}
+                galery={galery}
+                carouselPos={carouselPos}
+                setCarouselPos={setCarouselPos}
+              />
+            )}
+          </AnimatePresence>
           <DetailsCard layoutId={parseInt(pathId)}>
             <button className="close" onClick={closeButtonHandler}>
               <img src={close} alt="close card" />
@@ -115,14 +129,13 @@ const GameDetails = ({ pathId }) => {
             <Description>
               <p>{info.description_raw}</p>
             </Description>
-            <div className="gallery">
-              {screenshots.map((data, index) => (
-                <img
-                  key={data.id}
-                  src={smallImage(data.image, 1280)}
-                  alt={`screenshot #${index + 1}`}
-                />
-              ))}
+            <div className="galery">
+              <Carousel
+                setGalery={setGalery}
+                galery={galery}
+                carouselPos={carouselPos}
+                setCarouselPos={setCarouselPos}
+              />
             </div>
           </DetailsCard>
         </CardShadow>
@@ -157,6 +170,7 @@ const CardShadow = styled(motion.div)`
 `;
 
 const DetailsCard = styled(motion.div)`
+  display: block;
   z-index: 6;
   width: 60%;
   border-radius: 1rem;
@@ -189,6 +203,12 @@ const DetailsCard = styled(motion.div)`
       width: 1.2rem;
       top: 1rem;
     }
+  }
+  .galery {
+    position: static;
+    display: flex;
+    height: 500px;
+    overflow: hidden;
   }
 `;
 

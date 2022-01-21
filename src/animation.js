@@ -17,6 +17,28 @@ export const fadeAnimation = {
   },
 };
 
+export const carouselAnimation = {
+  hidden: {
+    opacity: 0,
+    scale: 0.7,
+  },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+    },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.5,
+    transition: {
+      duration: 0.4,
+      ease: "easeInOut",
+    },
+  },
+};
+
 export const titleAnimation = {
   hidden: { opacity: 0, y: -100 },
   show: {

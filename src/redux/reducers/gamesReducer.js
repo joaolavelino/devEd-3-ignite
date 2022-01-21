@@ -3,6 +3,7 @@ const initState = {
   newGames: [],
   upcoming: [],
   search: [],
+  terms: "",
 };
 export const gamesReducer = (state = initState, action) => {
   switch (action.type) {
@@ -17,6 +18,7 @@ export const gamesReducer = (state = initState, action) => {
       return {
         ...state,
         search: action.payload.search,
+        terms: action.payload.terms,
       };
     case "CLEAR_SEARCH":
       return {

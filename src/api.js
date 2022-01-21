@@ -49,4 +49,4 @@ export const gameScreenshotsURL = (id) =>
 
 //Searched Game
 export const searchGameUrl = (game_name) =>
-  `${base_url}games?search=${game_name}?&key=${process.env.REACT_APP_RAWG_API_KEY}`;
+  `${base_url}games?key=${process.env.REACT_APP_RAWG_API_KEY}&search=${game_name}&ordering=-rating&page_size=30`;

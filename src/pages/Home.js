@@ -19,7 +19,7 @@ const Home = () => {
   }, [dispatch]);
   //Get the data FROM the store (with use Selector)
   //declaring with the brackets, each array from the state will be extracted to a specific variable
-  const { popular, newGames, upcoming, search } = useSelector(
+  const { popular, newGames, upcoming, search, terms } = useSelector(
     (state) => state.games
   );
 
@@ -71,7 +71,10 @@ const Home = () => {
               animate="show"
             >
               <h2>Search Result</h2>
-              <button onClick={clearSearchHandler}>Clear</button>
+              <div className="search2line">
+                <h5>{`Searched for: "${terms}"`}</h5>
+                <button onClick={clearSearchHandler}>Clear</button>
+              </div>
             </motion.div>
             <Games
               className="a"
@@ -167,10 +170,29 @@ const container = {
 
 const SearchResults = styled(motion.div)`
   .searchHeader {
-    display: flex;
+    display: block;
     align-items: center;
+    justify-content: space-between;
+    padding: 8rem 0 2rem;
+    h2 {
+      padding: 0;
+      margin: 0;
+      line-height: 1;
+    }
+    .search2line {
+      display: flex;
+      align-items: flex-end;
+      margin-top: 0.5rem;
+    }
+    h5 {
+      margin-right: 2rem;
+      font-size: 1.5rem;
+      font-weight: lighter;
+      color: gray;
+      font-family: "Montserrat", sans-serif;
+    }
     button {
-      margin: 8rem 0 3rem 2rem;
+      margin: 0rem 0;
       padding: 0.5rem 1rem;
       background: #ff7676;
       border: none;
