@@ -32,7 +32,6 @@ const Nav = () => {
       <Logo onClick={clearSearchHandler}>
         <img src={logo} alt="Ignite Logo" />
         <h1>Ignite</h1>
-        <p>Game database</p>
       </Logo>
       <form className="search" onSubmit={searchHandler}>
         <input type="text" onChange={inputHandler} value={input} />
@@ -65,6 +64,10 @@ const StyledNav = styled(motion.nav)`
     align-items: center;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
     overflow:hidden;
+    transition: ease-in-out 0.4s;
+    :hover {
+      box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+  }
     
     @media screen and (max-width:600px){
     margin-top: 1rem;
@@ -85,9 +88,8 @@ const StyledNav = styled(motion.nav)`
     outline: none;
     font-family: "Montserrat", sans-serif;
     color: white;
-    :focus {
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-    }
+    
+    
   }
   button {
     width: 90px;
@@ -101,9 +103,7 @@ const StyledNav = styled(motion.nav)`
     cursor: pointer;
     color: #ff7676;
     transition: 0.4s;
-    :hover {
-      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
-  }
+    
 
   
 `;

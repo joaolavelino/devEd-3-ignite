@@ -125,6 +125,10 @@ const CarouselShadow = styled(motion.div)`
     border: none;
     background: white;
     cursor: pointer;
+    img {
+      position: static;
+      max-width: 100%;
+    }
     @media screen and (max-width: 768px) {
       top: 1rem;
       left: 1rem;
