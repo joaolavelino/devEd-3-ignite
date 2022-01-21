@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { carouselAnimation } from "../animation";
 //REDUX
 import { useSelector } from "react-redux";
@@ -25,7 +25,7 @@ const CarouselFullScreen = ({
       }
     }
     if (e.target.classList.contains("right")) {
-      if (carouselPos == screenshots.length - 1) {
+      if (carouselPos === screenshots.length - 1) {
         setCarouselPos(0);
       } else {
         setCarouselPos(carouselPos + 1);
@@ -37,19 +37,19 @@ const CarouselFullScreen = ({
   };
 
   window.addEventListener("keyup", function (e) {
-    if (e.key == "ArrowLeft") {
+    if (e.key === "ArrowLeft") {
       if (carouselPos === 0) {
         setCarouselPos(screenshots.length - 1);
       } else {
         setCarouselPos(carouselPos - 1);
       }
-    } else if (e.key == "ArrowRight") {
-      if (carouselPos == screenshots.length - 1) {
+    } else if (e.key === "ArrowRight") {
+      if (carouselPos === screenshots.length - 1) {
         setCarouselPos(0);
       } else {
         setCarouselPos(carouselPos + 1);
       }
-    } else if (e.key == "Escape") {
+    } else if (e.key === "Escape") {
       setGalery(!galery);
     }
   });
@@ -67,13 +67,13 @@ const CarouselFullScreen = ({
       <CarouselContainer className="carousel">
         <img
           src={arrow}
-          alt="previous picture"
+          alt="previous"
           className="arrow left"
           onClick={arrowHandler}
         />
         <img
           src={arrow}
-          alt="next picture"
+          alt="next "
           className="arrow right"
           onClick={arrowHandler}
         />
@@ -94,7 +94,7 @@ const CarouselFullScreen = ({
         <div className="selectorContainer">
           {screenshots.map((data, index) => (
             <div
-              className={`selector ${index == carouselPos ? "filled" : ""}`}
+              className={`selector ${index === carouselPos ? "filled" : ""}`}
               key={`${index}selectorfs`}
               id={index}
               onClick={selectorHandler}

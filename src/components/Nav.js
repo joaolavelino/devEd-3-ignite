@@ -32,6 +32,7 @@ const Nav = () => {
       <Logo onClick={clearSearchHandler}>
         <img src={logo} alt="Ignite Logo" />
         <h1>Ignite</h1>
+        <h6>Game database</h6>
       </Logo>
       <form className="search" onSubmit={searchHandler}>
         <input type="text" onChange={inputHandler} value={input} />

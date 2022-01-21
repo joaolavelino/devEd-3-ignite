@@ -25,9 +25,7 @@ import CarouselFullScreen from "./CarouselFullScreen";
 
 const GameDetails = ({ pathId }) => {
   //Data
-  const { screenshots, info, isLoading } = useSelector(
-    (state) => state.details
-  );
+  const { info, isLoading } = useSelector((state) => state.details);
   const [galery, setGalery] = useState(false);
   const [carouselPos, setCarouselPos] = useState(0);
 

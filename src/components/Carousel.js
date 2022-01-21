@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 //REDUX
@@ -19,7 +19,7 @@ const Carousel = ({ galery, setGalery, carouselPos, setCarouselPos }) => {
       }
     }
     if (e.target.classList.contains("right")) {
-      if (carouselPos == screenshots.length - 1) {
+      if (carouselPos === screenshots.length - 1) {
         setCarouselPos(0);
       } else {
         setCarouselPos(carouselPos + 1);
@@ -59,7 +59,7 @@ const Carousel = ({ galery, setGalery, carouselPos, setCarouselPos }) => {
           <div className="selectorContainer">
             {screenshots.map((data, index) => (
               <div
-                className={`selector ${index == carouselPos ? "filled" : ""}`}
+                className={`selector ${index === carouselPos ? "filled" : ""}`}
                 key={`${data.id}selectorcs`}
                 id={index}
                 onClick={selectorHandler}
