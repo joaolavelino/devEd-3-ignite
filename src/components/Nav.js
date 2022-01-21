@@ -32,7 +32,7 @@ const Nav = () => {
       <Logo onClick={clearSearchHandler}>
         <img src={logo} alt="Ignite Logo" />
         <h1>Ignite</h1>
-        <h6>Game database</h6>
+        <p>Game database</p>
       </Logo>
       <form className="search" onSubmit={searchHandler}>
         <input type="text" onChange={inputHandler} value={input} />
@@ -52,6 +52,7 @@ const StyledNav = styled(motion.nav)`
   position: fixed;
   top: -2vh;
   z-index: 4;
+
 
   @media screen and (max-width:600px){
     flex-direction: column;
@@ -116,6 +117,13 @@ const Logo = styled(motion.div)`
   img {
     width: 2rem;
     margin-right: 0.5rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-left: 1rem;
+    color: white;
+    margin-top: 2px;
   }
 `;
 
