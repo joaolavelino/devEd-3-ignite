@@ -2,7 +2,7 @@ import React, { useState } from "react";
 //Style and Animation
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { fadeAnimation } from "../animation";
+import { fadeAnimation, titleAnimation } from "../animation";
 //REDUX
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -22,10 +22,11 @@ import starHalf from "../img/star-half.png";
 import close from "../img/times-solid.svg";
 import Carousel from "./Carousel";
 import CarouselFullScreen from "./CarouselFullScreen";
+import Spinner from "./Spinner";
 
 const GameDetails = ({ pathId }) => {
   //Data
-  const { info, isLoading } = useSelector((state) => state.details);
+  const { info, isLoading, error } = useSelector((state) => state.details);
   const [galery, setGalery] = useState(false);
   const [carouselPos, setCarouselPos] = useState(0);
 
@@ -72,7 +73,12 @@ const GameDetails = ({ pathId }) => {
 
   return (
     <>
-      {!isLoading && (
+      {isLoading && (
+        <LoadingDetails className="spinnerContainer">
+          <Spinner />
+        </LoadingDetails>
+      )}
+      {!isLoading && !error && (
         <CardShadow
           className="shadow"
           onClick={exitDetailsHandler}
@@ -247,6 +253,27 @@ const Media = styled(motion.div)`
 
 const Description = styled(motion.div)`
   margin: 5rem 0;
+`;
+
+const LoadingDetails = styled(motion.div)`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  pointer-events: none;
+
+  .lds-ripple {
+    width: 250px;
+    height: 250px;
+  }
+  .lds-ripple div {
+    border: 10px solid rgb(255, 118, 118);
+  }
 `;
 
 export default GameDetails;

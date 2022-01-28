@@ -63,3 +63,36 @@ export const navAnimation = {
     },
   },
 };
+
+export const loadingAnimation = {
+  hidden: {
+    opacity: 0,
+    transition: { when: "beforeChildren" },
+  },
+  show: {
+    opacity: 1,
+    transition: {
+      duration: 0.75,
+      staggerChildren: 0.5,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.75,
+      ease: "easeInOut",
+    },
+  },
+};
+
+export const loadingTextAnimation = {
+  hidden: { opacity: 0, x: -100 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 1,
+      ease: "easeInOut",
+    },
+  },
+};

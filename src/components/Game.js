@@ -47,12 +47,19 @@ const GameCard = styled(motion.div)`
   flex-direction: column;
   justify-content: space-between;
   height: 40vh;
-  box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.4);
   border-radius: 0.7rem;
   overflow: hidden;
+  background-color: #ff7676;
+
   a {
     width: 100%;
     height: 100%;
+    transition: 0.2s;
+    &:hover {
+      opacity: 0.6;
+      transform: scale(1.02);
+    }
   }
   .header {
     position: relative;
@@ -64,6 +71,10 @@ const GameCard = styled(motion.div)`
     box-sizing: border-box;
     padding: 1rem;
     background-color: rgba(0, 0, 0, 0.5);
+    transition: 0.4s;
+    &:hover {
+      background-color: rgba(255, 118, 118, 0.5);
+    }
     h3,
     p {
       color: white;

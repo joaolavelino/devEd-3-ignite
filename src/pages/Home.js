@@ -10,6 +10,7 @@ import { titleAnimation } from "../animation";
 //Components
 import Game from "../components/Game";
 import { useLocation } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const Home = () => {
   //FETCH GAMES - send data TO the store
@@ -19,22 +20,29 @@ const Home = () => {
   }, [dispatch]);
   //Get the data FROM the store (with use Selector)
   //declaring with the brackets, each array from the state will be extracted to a specific variable
-  const { popular, newGames, upcoming, search, terms } = useSelector(
-    (state) => state.games
-  );
+
+  const { popular, newGames, upcoming, search, terms, isLoading, error } =
+    useSelector((state) => state.games);
 
   //GET CURRENT LOCATION
   const location = useLocation();
   const pathId = location.pathname.split("/")[2];
 
+  //this will lock the scrolling of the background part when the game details is open
   if (!pathId) {
     document.body.style.overflow = "auto";
   }
 
+  if (isLoading) {
+    document.body.style.overflow = "hidden";
+  }
+
+  //clear search
   const clearSearchHandler = () => {
     dispatch(clearSearch());
   };
 
+  //Avoid loading games without images
   const filterListBG = (array) => {
     let filtered = array.filter((e) => e.background_image != null);
     return filtered;
@@ -42,11 +50,13 @@ const Home = () => {
 
   return (
     <GameList>
+      <AnimatePresence>{isLoading && <Loading />}</AnimatePresence>
+
       <AnimatePresence>
         {pathId && <GameDetails pathId={pathId} />}
       </AnimatePresence>
       <AnimatePresence>
-        {search.length > 0 && (
+        {!error && terms.length && (
           <SearchResults
             initial={{
               opacity: 0,
@@ -76,60 +86,81 @@ const Home = () => {
                 <button onClick={clearSearchHandler}>Clear</button>
               </div>
             </motion.div>
-            <Games
-              className="a"
-              variants={container}
-              initial="hidden"
-              animate="show"
-            >
-              {filterListBG(search).map((game, index) => (
-                <Game key={game.id} game={game} index={index} />
-              ))}
-            </Games>
+            {search.length ? (
+              <Games
+                className="a"
+                variants={container}
+                initial="hidden"
+                animate="show"
+              >
+                {filterListBG(search).map((game, index) => (
+                  <Game key={`se${game.id}`} game={game} index={index} />
+                ))}
+              </Games>
+            ) : (
+              <Games>
+                <h5>
+                  Sua busca não retornou nenhum resultado... Tente novamente com
+                  outros termos!
+                </h5>
+              </Games>
+            )}
           </SearchResults>
         )}
       </AnimatePresence>
-
-      {!search.length && (
-        <AnimatePresence>
-          <>
-            <motion.h2
-              variants={titleAnimation}
-              initial="hidden"
-              animate="show"
-            >
-              Upcoming Games
-            </motion.h2>
-            <Games
-              className="a"
-              variants={container}
-              initial="hidden"
-              animate="show"
-            >
-              {filterListBG(upcoming).map((game, index) => (
-                <Game key={game.id} game={game} index={index} />
-              ))}
-            </Games>
-            <motion.h2
-              variants={titleAnimation}
-              initial="hidden"
-              animate="show"
-            >
-              Popular Games
-            </motion.h2>
-            <Games>
-              {filterListBG(popular).map((game, index) => (
-                <Game key={game.id} game={game} index={index} />
-              ))}
-            </Games>
-            <h2>New Games</h2>
-            <Games>
-              {filterListBG(newGames).map((game, index) => (
-                <Game key={game.id} game={game} index={index} />
-              ))}
-            </Games>
-          </>
-        </AnimatePresence>
+      {!error && !isLoading && (
+        <>
+          {!search.length && (
+            <AnimatePresence>
+              <motion.h2
+                variants={titleAnimation}
+                initial="hidden"
+                animate="show"
+              >
+                Upcoming Games
+              </motion.h2>
+              <Games
+                className="a"
+                variants={container}
+                initial="hidden"
+                animate="show"
+              >
+                {filterListBG(upcoming).map((game, index) => (
+                  <Game key={`up${game.id}`} game={game} index={index} />
+                ))}
+              </Games>
+              <motion.h2
+                variants={titleAnimation}
+                initial="hidden"
+                animate="show"
+              >
+                Popular Games
+              </motion.h2>
+              <Games>
+                {filterListBG(popular).map((game, index) => (
+                  <Game key={`po${game.id}`} game={game} index={index} />
+                ))}
+              </Games>
+              <h2>New Games</h2>
+              <Games>
+                {filterListBG(newGames).map((game, index) => (
+                  <Game key={`ng${game.id}`} game={game} index={index} />
+                ))}
+              </Games>
+            </AnimatePresence>
+          )}
+        </>
+      )}
+      {isLoading && <div className="loading"></div>}
+      {error && !isLoading && (
+        <>
+          <motion.h2 variants={titleAnimation} initial="hidden" animate="show">
+            Error :(
+          </motion.h2>
+          <motion.h5 variants={titleAnimation} initial="hidden" animate="show">
+            Failed communication with the server. Try again later.
+          </motion.h5>
+        </>
       )}
     </GameList>
   );
@@ -174,6 +205,9 @@ const SearchResults = styled(motion.div)`
     align-items: center;
     justify-content: space-between;
     padding: 8rem 0 2rem;
+    @media screen and (max-width: 600px) {
+      padding: 10rem 0 3rem;
+    }
     h2 {
       padding: 0;
       margin: 0;

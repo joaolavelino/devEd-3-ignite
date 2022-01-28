@@ -34,7 +34,7 @@ const Nav = () => {
         <h1>Ignite</h1>
       </Logo>
       <form className="search" onSubmit={searchHandler}>
-        <input type="text" onChange={inputHandler} value={input} />
+        <input type="text" onChange={inputHandler} value={input} required />
         <button type="submit">Search</button>
       </form>
     </StyledNav>
