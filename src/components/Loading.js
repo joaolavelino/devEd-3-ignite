@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { loadingAnimation, loadingTextAnimation } from "../animation";
+import { loadingAnimation } from "../animation";
 //media
 import logo from "../img/logo.svg";
 import Spinner from "./Spinner";

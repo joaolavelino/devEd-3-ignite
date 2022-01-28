@@ -2,7 +2,7 @@ import React, { useState } from "react";
 //Style and Animation
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { fadeAnimation, titleAnimation } from "../animation";
+import { fadeAnimation } from "../animation";
 //REDUX
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
