@@ -173,7 +173,7 @@ const CardShadow = styled(motion.div)`
   }
 `;
 
-const DetailsCard = styled(motion.div)`
+const DetailsCard = styled(motion.article)`
   display: block;
   z-index: 6;
   width: 60%;

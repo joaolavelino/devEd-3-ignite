@@ -9,7 +9,7 @@ import logo from "../img/logo.svg";
 import { useDispatch } from "react-redux";
 import { searchGames, clearSearch } from "../redux/actions/gamesAction";
 
-const Nav = () => {
+const Header = () => {
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
 
@@ -28,7 +28,7 @@ const Nav = () => {
   };
 
   return (
-    <StyledNav variants={navAnimation} initial="hidden" animate="show">
+    <StyledHeader variants={navAnimation} initial="hidden" animate="show">
       <Logo onClick={clearSearchHandler}>
         <img src={logo} alt="Ignite Logo" />
         <h1>Ignite</h1>
@@ -37,11 +37,11 @@ const Nav = () => {
         <input type="text" onChange={inputHandler} value={input} required />
         <button type="submit">Search</button>
       </form>
-    </StyledNav>
+    </StyledHeader>
   );
 };
 
-const StyledNav = styled(motion.nav)`
+const StyledHeader = styled(motion.header)`
   background-color: #ff7676;
   padding: 3rem 5rem 2rem;
   display: flex;
@@ -127,4 +127,4 @@ const Logo = styled(motion.div)`
   }
 `;
 
-export default Nav;
+export default Header;

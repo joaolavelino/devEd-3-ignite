@@ -33,16 +33,16 @@ const Game = ({ game, index }) => {
           src={smallImage(game.background_image, 640)}
           alt={`${game.name} feature image`}
         />
-        <div className="header">
+        <header>
           <motion.h3 layoutId={`title${game.id}`}>{game.name}</motion.h3>
           <p>{game.released} </p>
-        </div>
+        </header>
       </Link>
     </GameCard>
   );
 };
 
-const GameCard = styled(motion.div)`
+const GameCard = styled(motion.article)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -61,7 +61,7 @@ const GameCard = styled(motion.div)`
       transform: scale(1.02);
     }
   }
-  .header {
+  header {
     position: relative;
     bottom: 30%;
     height: 30%;
